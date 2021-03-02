@@ -24,8 +24,8 @@ public class Addcustomer {
 		driver.manage().window().maximize();   
 	}
 
-	@Given("uder click on add customer")
-	public void uder_click_on_add_customer() {
+	@Given("user click on add customer")
+	public void user_click_on_add_customer() {
 		driver.findElement(By.xpath("(//a[text()='Add Customer'])[1]")).click();
 	  }
 
