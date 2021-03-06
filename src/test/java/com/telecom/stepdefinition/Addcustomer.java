@@ -8,35 +8,39 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.telecom.objectrepository.Addcustomerpage;
+import com.telecom.resources.CommonActions;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Addcustomer {
-	public static WebDriver driver;
+public class Addcustomer extends CommonActions {
+	CommonActions c = new CommonActions();
+	Addcustomerpage a = new Addcustomerpage();
+	Hooks h = new Hooks();
 	@Given("user launches telecom application")
 	public void user_launches_telecom_application() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.get("http://www.demo.guru99.com/telecom/index.html");
-		driver.manage().window().maximize();   
+	    h.beforescenario();
 	}
-
+	 
+	
+	
 	@Given("user click on add customer")
 	public void user_click_on_add_customer() {
-		driver.findElement(By.xpath("(//a[text()='Add Customer'])[1]")).click();
+		c.button(a.getCustomerButton());
 	  }
 
 	@When("user enter values in fields")
 	public void user_enter_values_in_fields() {
-		driver.findElement(By.xpath("//label[@for='done']")).click();
-		driver.findElement(By.id("fname")).sendKeys("vignesh");
-		driver.findElement(By.id("lname")).sendKeys("vijayaraman");
-		driver.findElement(By.id("email")).sendKeys("vicky@gmail.com");
-		driver.findElement(By.name("addr")).sendKeys("coimbatore");
-		driver.findElement(By.id("telephoneno")).sendKeys("8940422633");
+		c.button(a.getDoneButton());
+		c.write(a.getFirstname(),"vignesh");
+		c.write(a.getLastname(), "vijayaraman");
+		c.write(a.getMail(),"java@gmail.com");
+		c.write(a.getAdrress(), "coimbatore");
+		c.write(a.getNum(), "8940422633");
 		}
 	@When("user enter values in fields by using one dim list")
 	public void user_enter_values_in_fields_by_using_one_dim_list(DataTable datas) {
@@ -83,15 +87,14 @@ public class Addcustomer {
 	}
 @When("user click on submit button")
 	public void user_click_on_submit_button() {
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
+		c.button(a.getSubmit());
 	    }
 
 	@Then("user shoukld be displayed customer id is generated")
 	public void user_shoukld_be_displayed_customer_id_is_generated() throws InterruptedException {
 		
-		WebElement id = driver.findElement(By.xpath("(//td[@align='center'])[2]"));
-		//String text = id.getText();
-		System.out.println(id.getText());
+	c.button(a.getText());
+		System.out.println(a.getText());
 		
 	    
 	}

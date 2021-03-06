@@ -1,6 +1,6 @@
 #Author: your.email@your.domain.com
 Feature: Add customer module
-
+@hardcoded
   Scenario: Add customer flow validation
     Given user launches telecom application
     And user click on add customer

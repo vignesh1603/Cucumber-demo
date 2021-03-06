@@ -1,5 +1,6 @@
 #Author: your.email@your.domain.com
 Feature: Add customer
+@hardcoded
 
   Scenario Outline: Validation of add customer
     
